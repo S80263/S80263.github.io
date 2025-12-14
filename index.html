@@ -15,7 +15,7 @@
             --bg-slate: #f1f5f9;
             --card-white: #ffffff;
             --text-dark: #0f172a;
-            --text-muted: #64748b;
+            --text-muted: #4a5568;
             --border: #e2e8f0;
             --shadow: 0 4px 20px -2px rgba(0, 65, 106, 0.1);
         }
@@ -47,7 +47,8 @@
             grid-template-areas: 
                 "profile profile location tech"
                 "profile profile case case"
-                "hobby playlist playlist playlist";
+                "reflection reflection hobby hobby"
+                "playlist playlist playlist playlist";
         }
 
         /* Responsive Breakpoints */
@@ -58,6 +59,7 @@
                     "profile profile"
                     "location tech"
                     "case case"
+                    "reflection reflection"
                     "hobby playlist";
             }
         }
@@ -70,6 +72,7 @@
                     "location"
                     "tech"
                     "case"
+                    "reflection"
                     "hobby"
                     "playlist";
             }
@@ -79,18 +82,34 @@
         .card {
             background: var(--card-white);
             border: 1px solid var(--border);
-            border-radius: 24px;
+            border-radius: 28px;
             padding: 24px;
             box-shadow: var(--shadow);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
 
+        /* Hover Zoom Effect */
         .card:hover {
             transform: scale(1.02);
-            border-color: var(--accent-blue);
+            box-shadow: 0 20px 25px -5px rgba(0, 65, 106, 0.15);
+            z-index: 2;
         }
 
-        /* Text Elements */
+        /* Profile Card with Background Image */
+        .profile { 
+            grid-area: profile; 
+            border-top: 6px solid var(--primary-blue);
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between;
+            /* Image with 85% white overlay for readability */
+            background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('bg.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
         .label {
             font-size: 11px;
             font-weight: 700;
@@ -101,41 +120,52 @@
             display: block;
         }
 
-        h1 { font-size: 24px; font-weight: 700; color: var(--primary-blue); margin-bottom: 8px; }
+        h1 { font-size: 26px; font-weight: 700; color: var(--primary-blue); margin-bottom: 8px; line-height: 1.1; }
         h2 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
-        p { color: var(--text-muted); font-size: 14px; line-height: 1.5; }
+        p { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
 
-        /* Component Specifics */
-        .profile { grid-area: profile; display: flex; flex-direction: column; justify-content: space-between; }
-        .tagline { color: var(--accent-blue); font-weight: 500; font-style: italic; margin: 10px 0; border-left: 3px solid var(--accent-blue); padding-left: 10px; }
-        
+        .tagline { 
+            color: var(--primary-blue); 
+            font-weight: 600; 
+            font-style: italic; 
+            margin: 12px 0; 
+            padding-left: 12px; 
+            border-left: 3px solid var(--accent-blue); 
+        }
+
+        /* Button Styling */
         .socials { display: flex; gap: 10px; margin-top: 20px; }
         .btn { 
             text-decoration: none; 
             font-size: 12px; 
             font-weight: 600; 
-            padding: 8px 16px; 
-            border-radius: 12px; 
-            background: var(--bg-slate); 
+            padding: 10px 18px; 
+            border-radius: 14px; 
+            background: rgba(255, 255, 255, 0.7); 
             color: var(--primary-blue);
-            transition: 0.2s;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+            backdrop-filter: blur(4px);
         }
-        .btn:hover { background: var(--primary-blue); color: white; }
+        .btn:hover { background: var(--primary-blue); color: white; border-color: var(--primary-blue); }
 
-        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-        .tag { background: #e0f2fe; color: var(--primary-blue); font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 20px; }
-
+        /* Grid Area Assignments */
         .location { grid-area: location; }
         .tech { grid-area: tech; }
-        .case-study { grid-area: case; background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); }
+        .case-study { grid-area: case; }
+        .reflection { grid-area: reflection; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
         .hobby { grid-area: hobby; }
         .playlist { grid-area: playlist; display: flex; align-items: center; justify-content: space-between; }
 
-        /* Mini Audio Visualizer for Playlist */
+        /* Tag Styling */
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+        .tag { background: #e0f2fe; color: var(--primary-blue); font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 20px; }
+
+        /* Visualizer Animation */
         .visualizer { display: flex; gap: 3px; align-items: flex-end; height: 20px; }
-        .bar { width: 3px; background: var(--accent-blue); border-radius: 2px; animation: bounce 1s infinite alternate; }
-        .bar:nth-child(2) { height: 15px; animation-delay: 0.2s; }
-        .bar:nth-child(3) { height: 10px; animation-delay: 0.4s; }
+        .v-bar { width: 3px; background: var(--accent-blue); border-radius: 2px; animation: bounce 1s infinite alternate; }
+        .v-bar:nth-child(2) { height: 15px; animation-delay: 0.2s; }
+        .v-bar:nth-child(3) { height: 10px; animation-delay: 0.4s; }
         @keyframes bounce { from { height: 5px; } to { height: 20px; } }
     </style>
 </head>
@@ -144,27 +174,27 @@
     <div class="container">
         <div class="card profile">
             <div>
-                <span class="label">Identity</span>
+                <span class="label">Student Portfolio</span>
                 <h1>Nur Diana Safiyyah Binti Mohamad Nazrie</h1>
                 <p><strong>Food Science</strong> • Year 1</p>
                 <div class="tagline">"Innovating food safety."</div>
                 <p>Universiti Malaysia Terengganu</p>
             </div>
             <div class="socials">
-                <a href="#" class="btn">LinkedIn</a>
-                <a href="#" class="btn">GitHub</a>
-                <a href="#" class="btn">Portal</a>
+                <a href="#" target="_blank" class="btn">LinkedIn</a>
+                <a href="#" target="_blank" class="btn">GitHub</a>
+                <a href="#" target="_blank" class="btn">UMT Portal</a>
             </div>
         </div>
 
         <div class="card location">
-            <span class="label">Base</span>
+            <span class="label">Current Base</span>
             <h2>UMT</h2>
             <p>Kuala Nerus, Terengganu</p>
         </div>
 
         <div class="card tech">
-            <span class="label">Subjects</span>
+            <span class="label">Key Subjects</span>
             <div class="tags">
                 <span class="tag">Food Chemistry</span>
                 <span class="tag">Microbiology</span>
@@ -174,27 +204,33 @@
         </div>
 
         <div class="card case-study">
-            <span class="label">Research Highlight</span>
+            <span class="label">Lab Project</span>
             <h2>Starch Gelatinization in Local Kuih</h2>
-            <p>Analyzing texture profiles of <em>Kuih Lapis</em> to understand the physicochemical changes during the steaming process.</p>
+            <p>Analyzing texture profiles of <em>Kuih Lapis</em> to optimize processing methods.</p>
+        </div>
+
+        <div class="card reflection">
+            <span class="label">Reflection</span>
+            <h2>Why Food Tech Matters in Malaysia</h2>
+            <p>Sustainable food security is crucial for our future. By optimizing local processing methods, we can reduce waste and improve nutrition.</p>
         </div>
 
         <div class="card hobby">
-            <span class="label">Recreation</span>
-            <h2>Pantai UMT</h2>
-            <p>Evening walks by the South China Sea.</p>
+            <span class="label">Life Outside Lab</span>
+            <h2>Evening Walks</h2>
+            <p>At Pantai UMT, enjoying the sea breeze.</p>
         </div>
 
         <div class="card playlist">
             <div>
-                <span class="label">Now Playing</span>
-                <h2>Study Focus & Lofi</h2>
-                <p>Concentration Mode On</p>
+                <span class="label">Playlist</span>
+                <h2>Focus & Study Lofi</h2>
+                <p>Flow State engaged</p>
             </div>
             <div class="visualizer">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
+                <div class="v-bar"></div>
+                <div class="v-bar"></div>
+                <div class="v-bar"></div>
             </div>
         </div>
     </div>
