@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nur Diana Safiyyah | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* UMT Ocean Blue Theme */
+            --primary-blue: #00416A; 
+            --accent-blue: #005b96;
+            --bg-slate: #f1f5f9;
+            --card-white: #ffffff;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 4px 20px -2px rgba(0, 65, 106, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-slate);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Bento Grid Architecture */
+        .container {
+            display: grid;
+            width: 100%;
+            max-width: 1100px;
+            gap: 20px;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-areas: 
+                "profile profile location tech"
+                "profile profile case case"
+                "hobby playlist playlist playlist";
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-areas: 
+                    "profile profile"
+                    "location tech"
+                    "case case"
+                    "hobby playlist";
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                grid-template-columns: 1fr;
+                grid-template-areas: 
+                    "profile"
+                    "location"
+                    "tech"
+                    "case"
+                    "hobby"
+                    "playlist";
+            }
+        }
+
+        /* Card Styling */
+        .card {
+            background: var(--card-white);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+            border-color: var(--accent-blue);
+        }
+
+        /* Text Elements */
+        .label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-blue);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        h1 { font-size: 24px; font-weight: 700; color: var(--primary-blue); margin-bottom: 8px; }
+        h2 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+        p { color: var(--text-muted); font-size: 14px; line-height: 1.5; }
+
+        /* Component Specifics */
+        .profile { grid-area: profile; display: flex; flex-direction: column; justify-content: space-between; }
+        .tagline { color: var(--accent-blue); font-weight: 500; font-style: italic; margin: 10px 0; border-left: 3px solid var(--accent-blue); padding-left: 10px; }
+        
+        .socials { display: flex; gap: 10px; margin-top: 20px; }
+        .btn { 
+            text-decoration: none; 
+            font-size: 12px; 
+            font-weight: 600; 
+            padding: 8px 16px; 
+            border-radius: 12px; 
+            background: var(--bg-slate); 
+            color: var(--primary-blue);
+            transition: 0.2s;
+        }
+        .btn:hover { background: var(--primary-blue); color: white; }
+
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+        .tag { background: #e0f2fe; color: var(--primary-blue); font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 20px; }
+
+        .location { grid-area: location; }
+        .tech { grid-area: tech; }
+        .case-study { grid-area: case; background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); }
+        .hobby { grid-area: hobby; }
+        .playlist { grid-area: playlist; display: flex; align-items: center; justify-content: space-between; }
+
+        /* Mini Audio Visualizer for Playlist */
+        .visualizer { display: flex; gap: 3px; align-items: flex-end; height: 20px; }
+        .bar { width: 3px; background: var(--accent-blue); border-radius: 2px; animation: bounce 1s infinite alternate; }
+        .bar:nth-child(2) { height: 15px; animation-delay: 0.2s; }
+        .bar:nth-child(3) { height: 10px; animation-delay: 0.4s; }
+        @keyframes bounce { from { height: 5px; } to { height: 20px; } }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card profile">
+            <div>
+                <span class="label">Identity</span>
+                <h1>Nur Diana Safiyyah Binti Mohamad Nazrie</h1>
+                <p><strong>Food Science</strong> • Year 1</p>
+                <div class="tagline">"Innovating food safety."</div>
+                <p>Universiti Malaysia Terengganu</p>
+            </div>
+            <div class="socials">
+                <a href="#" class="btn">LinkedIn</a>
+                <a href="#" class="btn">GitHub</a>
+                <a href="#" class="btn">Portal</a>
+            </div>
+        </div>
+
+        <div class="card location">
+            <span class="label">Base</span>
+            <h2>UMT</h2>
+            <p>Kuala Nerus, Terengganu</p>
+        </div>
+
+        <div class="card tech">
+            <span class="label">Subjects</span>
+            <div class="tags">
+                <span class="tag">Food Chemistry</span>
+                <span class="tag">Microbiology</span>
+                <span class="tag">Excel</span>
+                <span class="tag">Lab Analysis</span>
+            </div>
+        </div>
+
+        <div class="card case-study">
+            <span class="label">Research Highlight</span>
+            <h2>Starch Gelatinization in Local Kuih</h2>
+            <p>Analyzing texture profiles of <em>Kuih Lapis</em> to understand the physicochemical changes during the steaming process.</p>
+        </div>
+
+        <div class="card hobby">
+            <span class="label">Recreation</span>
+            <h2>Pantai UMT</h2>
+            <p>Evening walks by the South China Sea.</p>
+        </div>
+
+        <div class="card playlist">
+            <div>
+                <span class="label">Now Playing</span>
+                <h2>Study Focus & Lofi</h2>
+                <p>Concentration Mode On</p>
+            </div>
+            <div class="visualizer">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
