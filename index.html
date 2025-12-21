@@ -3,237 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nur Diana Safiyyah | Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Lab Timer | Scientific Analysis</title>
     <style>
+        /* CSS Style - Scientific Blue Aesthetic */
         :root {
-            /* UMT Ocean Blue Theme */
-            --primary-blue: #00416A; 
-            --accent-blue: #005b96;
-            --bg-slate: #f1f5f9;
-            --card-white: #ffffff;
-            --text-dark: #0f172a;
-            --text-muted: #4a5568;
-            --border: #e2e8f0;
-            --shadow: 0 4px 20px -2px rgba(0, 65, 106, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            --bg-color: #e3f2fd; /* Light Scientific Blue */
+            --card-bg: #ffffff;
+            --accent-blue: #1976d2; /* Primary Lab Blue */
+            --text-main: #263238;
+            --btn-start: #81c784; /* Success Green */
+            --btn-pause: #ffd54f; /* Caution Yellow */
+            --btn-reset: #cfd8dc; /* Neutral Grey */
         }
 
         body {
-            background-color: var(--bg-slate);
-            font-family: 'Inter', sans-serif;
-            color: var(--text-dark);
-            padding: 40px 20px;
+            background-color: var(--bg-color);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
+            margin: 0;
+            color: var(--text-main);
         }
 
-        /* Bento Grid Architecture */
         .container {
-            display: grid;
-            width: 100%;
-            max-width: 1100px;
-            gap: 20px;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-areas: 
-                "profile profile location tech"
-                "profile profile case case"
-                "reflection reflection hobby hobby"
-                "playlist playlist playlist playlist";
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(25, 118, 210, 0.15);
+            text-align: center;
+            width: 320px;
+            border-top: 8px solid var(--accent-blue);
         }
 
-        /* Responsive Breakpoints */
-        @media (max-width: 1024px) {
-            .container {
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-areas: 
-                    "profile profile"
-                    "location tech"
-                    "case case"
-                    "reflection reflection"
-                    "hobby playlist";
-            }
-        }
-
-        @media (max-width: 640px) {
-            .container {
-                grid-template-columns: 1fr;
-                grid-template-areas: 
-                    "profile"
-                    "location"
-                    "tech"
-                    "case"
-                    "reflection"
-                    "hobby"
-                    "playlist";
-            }
-        }
-
-        /* Card Styling */
-        .card {
-            background: var(--card-white);
-            border: 1px solid var(--border);
-            border-radius: 28px;
-            padding: 24px;
-            box-shadow: var(--shadow);
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Hover Zoom Effect */
-        .card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 20px 25px -5px rgba(0, 65, 106, 0.15);
-            z-index: 2;
-        }
-
-        /* Profile Card with Background Image */
-        .profile { 
-            grid-area: profile; 
-            border-top: 6px solid var(--primary-blue);
-            display: flex; 
-            flex-direction: column; 
-            justify-content: space-between;
-            /* Image with 85% white overlay for readability */
-            background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('bg.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .label {
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--accent-blue);
-            margin-bottom: 12px;
+        #lab-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
             display: block;
         }
 
-        h1 { font-size: 26px; font-weight: 700; color: var(--primary-blue); margin-bottom: 8px; line-height: 1.1; }
-        h2 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
-        p { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
-
-        .tagline { 
-            color: var(--primary-blue); 
-            font-weight: 600; 
-            font-style: italic; 
-            margin: 12px 0; 
-            padding-left: 12px; 
-            border-left: 3px solid var(--accent-blue); 
+        .timer-display {
+            font-family: 'Courier New', Courier, monospace; /* Monospace for scientific feel */
+            font-size: 54px;
+            font-weight: bold;
+            margin: 10px 0 30px 0;
+            color: var(--accent-blue);
         }
 
-        /* Button Styling */
-        .socials { display: flex; gap: 10px; margin-top: 20px; }
-        .btn { 
-            text-decoration: none; 
-            font-size: 12px; 
-            font-weight: 600; 
-            padding: 10px 18px; 
-            border-radius: 14px; 
-            background: rgba(255, 255, 255, 0.7); 
-            color: var(--primary-blue);
-            border: 1px solid var(--border);
-            transition: 0.3s;
-            backdrop-filter: blur(4px);
+        .controls {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
         }
-        .btn:hover { background: var(--primary-blue); color: white; border-color: var(--primary-blue); }
 
-        /* Grid Area Assignments */
-        .location { grid-area: location; }
-        .tech { grid-area: tech; }
-        .case-study { grid-area: case; }
-        .reflection { grid-area: reflection; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
-        .hobby { grid-area: hobby; }
-        .playlist { grid-area: playlist; display: flex; align-items: center; justify-content: space-between; }
+        button {
+            border: 1px solid rgba(0,0,0,0.1);
+            padding: 12px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+            color: var(--text-main);
+        }
 
-        /* Tag Styling */
-        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-        .tag { background: #e0f2fe; color: var(--primary-blue); font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 20px; }
+        button:hover {
+            filter: brightness(0.9);
+        }
 
-        /* Visualizer Animation */
-        .visualizer { display: flex; gap: 3px; align-items: flex-end; height: 20px; }
-        .v-bar { width: 3px; background: var(--accent-blue); border-radius: 2px; animation: bounce 1s infinite alternate; }
-        .v-bar:nth-child(2) { height: 15px; animation-delay: 0.2s; }
-        .v-bar:nth-child(3) { height: 10px; animation-delay: 0.4s; }
-        @keyframes bounce { from { height: 5px; } to { height: 20px; } }
+        button:active {
+            transform: translateY(2px);
+        }
+
+        #start-btn { background-color: var(--btn-start); }
+        #pause-btn { background-color: var(--btn-pause); }
+        #reset-btn { background-color: var(--btn-reset); }
+
+        .status-text {
+            margin-top: 25px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #546e7a;
+        }
     </style>
 </head>
-<body>
+<body><a href="https://S80263.github.io" style="position:absolute; top:20px; left:20px;">← Back to Portfolio</a>
 
     <div class="container">
-        <div class="card profile">
-            <div>
-                <span class="label">Student Portfolio</span>
-                <h1>Nur Diana Safiyyah Binti Mohamad Nazrie</h1>
-                <p><strong>Food Science</strong> • Year 1</p>
-                <div class="tagline">"Innovating food safety."</div>
-                <p>Universiti Malaysia Terengganu</p>
-            </div>
-            <div class="socials">
-                <a href="#" target="_blank" class="btn">LinkedIn</a>
-                <a href="#" target="_blank" class="btn">GitHub</a>
-                <a href="#" target="_blank" class="btn">UMT Portal</a>
-            </div>
+        <div id="lab-icon">🧪</div>
+        <div class="timer-display" id="timer">15:00</div>
+        
+        <div class="controls">
+            <button id="start-btn">Start Run</button>
+            <button id="pause-btn">Pause</button>
+            <button id="reset-btn">Reset</button>
         </div>
 
-        <div class="card location">
-            <span class="label">Current Base</span>
-            <h2>UMT</h2>
-            <p>Kuala Nerus, Terengganu</p>
-        </div>
-
-        <div class="card tech">
-            <span class="label">Key Subjects</span>
-            <div class="tags">
-                <span class="tag">Food Chemistry</span>
-                <span class="tag">Microbiology</span>
-                <span class="tag">Excel</span>
-                <span class="tag">Lab Analysis</span>
-            </div>
-        </div>
-
-        <div class="card case-study">
-            <span class="label">Lab Project</span>
-            <h2>Starch Gelatinization in Local Kuih</h2>
-            <p>Analyzing texture profiles of <em>Kuih Lapis</em> to optimize processing methods.</p>
-        </div>
-
-        <div class="card reflection">
-            <span class="label">Reflection</span>
-            <h2>Why Food Tech Matters in Malaysia</h2>
-            <p>Sustainable food security is crucial for our future. By optimizing local processing methods, we can reduce waste and improve nutrition.</p>
-        </div>
-
-        <div class="card hobby">
-            <span class="label">Life Outside Lab</span>
-            <h2>Evening Walks</h2>
-            <p>At Pantai UMT, enjoying the sea breeze.</p>
-        </div>
-
-        <div class="card playlist">
-            <div>
-                <span class="label">Playlist</span>
-                <h2>Focus & Study Lofi</h2>
-                <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1E4yfwJ2wmu4BX?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            </div>
-            <div class="visualizer">
-                <div class="v-bar"></div>
-                <div class="v-bar"></div>
-                <div class="v-bar"></div>
-            </div>
-        </div>
+        <div class="status-text" id="status">Standby: Ready for Analysis</div>
     </div>
 
+    <audio id="finish-sound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
+
+    <script>
+        /* JavaScript Logic */
+        const DEFAULT_TIME = 15 * 60; // 15 Minutes
+        let timeLeft = DEFAULT_TIME;
+        let timerId = null;
+
+        const labIcon = document.getElementById('lab-icon');
+        const timerDisplay = document.getElementById('timer');
+        const statusText = document.getElementById('status');
+        const finishSound = document.getElementById('finish-sound');
+
+        const labStates = {
+            IDLE: { emoji: '🧪', text: 'Standby: Ready for Analysis' },
+            RUNNING: { emoji: '🔬', text: 'Status: Analyzing Sample...' },
+            COMPLETE: { emoji: '✅', text: 'Result: Process Finished' }
+        };
+
+        function updateDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function startTimer() {
+            if (timerId !== null) return;
+            
+            labIcon.textContent = labStates.RUNNING.emoji;
+            statusText.textContent = labStates.RUNNING.text;
+
+            timerId = setInterval(() => {
+                timeLeft--;
+                updateDisplay();
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerId);
+                    timerId = null;
+                    finishTimer();
+                }
+            }, 1000);
+        }
+
+        function pauseTimer() {
+            clearInterval(timerId);
+            timerId = null;
+            statusText.textContent = "Status: Protocol Paused";
+        }
+
+        function resetTimer() {
+            clearInterval(timerId);
+            timerId = null;
+            timeLeft = DEFAULT_TIME;
+            updateDisplay();
+            labIcon.textContent = labStates.IDLE.emoji;
+            statusText.textContent = labStates.IDLE.text;
+        }
+
+        function finishTimer() {
+            labIcon.textContent = labStates.COMPLETE.emoji;
+            statusText.textContent = labStates.COMPLETE.text;
+            finishSound.play();
+        }
+
+        // Event Listeners
+        document.getElementById('start-btn').addEventListener('click', startTimer);
+        document.getElementById('pause-btn').addEventListener('click', pauseTimer);
+        document.getElementById('reset-btn').addEventListener('click', resetTimer);
+
+        // Initialize display
+        updateDisplay();
+    </script>
 </body>
 </html>
